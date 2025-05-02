@@ -1,3 +1,5 @@
+INCLUDE DSK2.MALLOC
+
 : FIB ( sequenceLength -- )
   0 1
   CR
