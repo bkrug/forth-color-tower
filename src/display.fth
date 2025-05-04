@@ -1,5 +1,4 @@
 : DISPLAYTOWERS
-  CR ." TOWER 1     TOWER 2     TOWER 3"
   0 4 DO
     CR
     TOWER1 I + C@ EMIT
@@ -7,4 +6,5 @@
     TOWER3 I + C@ EMIT
     -1
   +LOOP
+  CR ." TOWER 1     TOWER 2     TOWER 3"
 ;
