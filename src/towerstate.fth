@@ -1,0 +1,74 @@
+VARIABLE TOWER1 4 ALLOT
+VARIABLE TOWER2 4 ALLOT
+VARIABLE TOWER3 4 ALLOT
+VARIABLE HEIGHT1
+VARIABLE HEIGHT2
+VARIABLE HEIGHT3
+VARIABLE SOURCE
+VARIABLE DESTINATION
+
+: INITBYTEARRAY ( sveral-bytes-on-stack length startAddr -- )
+  SWAP OVER + SWAP
+  DO
+    I C!
+  LOOP
+;
+
+: INIT
+  32 32 66 71 82
+  5 TOWER1 INITBYTEARRAY
+  32 32 71 82 66
+  5 TOWER2 INITBYTEARRAY
+  32 32 71 66 82
+  5 TOWER3 INITBYTEARRAY
+
+  3 HEIGHT1 !
+  3 HEIGHT2 !
+  3 HEIGHT3 !
+;
+
+: MOVECOLOR ( n1 n2 -- )
+
+  ( We will use the parameters twice )
+  2DUP
+
+  ( Calculate addresses to copy color-byte from and to )
+  CASE
+    1 OF HEIGHT1 @ TOWER1 + DESTINATION ! ENDOF
+    2 OF HEIGHT2 @ TOWER2 + DESTINATION ! ENDOF
+    3 OF HEIGHT3 @ TOWER3 + DESTINATION ! ENDOF
+  ENDCASE
+  CASE
+    1 OF HEIGHT1 @ TOWER1 + 1 - SOURCE ! ENDOF
+    2 OF HEIGHT2 @ TOWER2 + 1 - SOURCE ! ENDOF
+    3 OF HEIGHT3 @ TOWER3 + 1 - SOURCE ! ENDOF
+  ENDCASE
+
+  ( Adjust heights of the effected towers )
+  CASE
+    1 OF 1 HEIGHT1 +! ENDOF
+    2 OF 1 HEIGHT2 +! ENDOF
+    3 OF 1 HEIGHT3 +! ENDOF
+  ENDCASE
+  CASE
+    1 OF -1 HEIGHT1 +! ENDOF
+    2 OF -1 HEIGHT2 +! ENDOF
+    3 OF -1 HEIGHT3 +! ENDOF
+  ENDCASE
+
+  ( Move color byte )
+  SOURCE @ .
+  DESTINATION @ .
+  SOURCE @ C@ DESTINATION @ C!
+  32 SOURCE @ C!
+;
+
+: MEMSHOW ( -- )
+  DO
+    CR I .
+    I 8 + I DO
+      I @ .
+    2 +LOOP
+  8 +LOOP
+  CR
+;
