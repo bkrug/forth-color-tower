@@ -7,7 +7,7 @@ VARIABLE HEIGHT3
 VARIABLE SOURCE
 VARIABLE DESTINATION
 
-: INITBYTEARRAY ( sveral-bytes-on-stack length startAddr -- )
+: INITBYTEARRAY ( [ several-bytes-on-stack ] length startAddr -- )
   SWAP OVER + SWAP
   DO
     I C!

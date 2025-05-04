@@ -18,3 +18,6 @@ os.system(f'xdm99.py -X sssd {towerDiskPath}')
 print('Copy FORTH code to DIS/VAR 80 files')
 copySource('src')
 copySource('camel99libs')
+
+camel99Path = os.path.join('camel99libs', 'camel99.ti.program')
+os.system(f'xdm99.py {towerDiskPath} -a {camel99Path} -n CAMEL99 -f PROGRAM')
