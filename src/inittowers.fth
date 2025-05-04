@@ -1,0 +1,38 @@
+VARIABLE TOWER1 4 ALLOT
+VARIABLE TOWER2 4 ALLOT
+VARIABLE TOWER3 4 ALLOT
+
+: INITBYTEARRAY ( sveral-bytes-on-stack length startAddr -- )
+  SWAP OVER + SWAP
+  DO
+    I C!
+  LOOP
+;
+
+: INIT
+  5 4 3 2 1
+  5 TOWER1 INITBYTEARRAY
+  10 11 12 13 14
+  5 TOWER2 INITBYTEARRAY
+  5 4 -3 2 1
+  5 TOWER3 INITBYTEARRAY
+
+  CR ." TOWER 1     TOWER 2     TOWER 3"
+  0 4 DO
+    CR
+    TOWER1 I + C@ .
+    TOWER2 I + C@ .
+    TOWER3 I + C@ .
+    -1
+  +LOOP
+;
+
+: MEMSHOW ( -- )
+  DO
+    CR I .
+    I 8 + I DO
+      I @ .
+    2 +LOOP
+  8 +LOOP
+  CR
+;

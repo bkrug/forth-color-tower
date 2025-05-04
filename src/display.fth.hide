@@ -1,0 +1,10 @@
+: DISPLAY.TOWERS
+  CR ." TOWER 1     TOWER 2     TOWER 3"
+  0 5 DO
+    CR
+    TOWER1 I + @ .
+    TOWER2 I + @ .
+    TOWER3 I + @ .
+    -1
+  +LOOP
+;
