@@ -28,6 +28,25 @@ VARIABLE DESTINATION
 ;
 
 : MOVECOLOR ( n1 n2 -- )
+  ( Validate )
+  2DUP
+  = IF
+    DROP DROP EXIT
+  THEN
+  2DUP
+  1 < IF
+    DROP DROP DROP EXIT
+  THEN
+  1 < IF
+    DROP DROP EXIT
+  THEN
+  2DUP
+  3 > IF
+    DROP DROP DROP EXIT
+  THEN
+  3 > IF
+    DROP DROP EXIT
+  THEN
 
   ( We will use the parameters twice )
   2DUP
