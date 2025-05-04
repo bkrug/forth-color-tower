@@ -16,15 +16,6 @@ VARIABLE TOWER3 4 ALLOT
   5 TOWER2 INITBYTEARRAY
   5 4 -3 2 1
   5 TOWER3 INITBYTEARRAY
-
-  CR ." TOWER 1     TOWER 2     TOWER 3"
-  0 4 DO
-    CR
-    TOWER1 I + C@ .
-    TOWER2 I + C@ .
-    TOWER3 I + C@ .
-    -1
-  +LOOP
 ;
 
 : MEMSHOW ( -- )
