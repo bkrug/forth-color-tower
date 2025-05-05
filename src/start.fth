@@ -1,0 +1,10 @@
+\ based on V2.2 of CAMEL99 FORTH startup file
+\ only matters when floppy is in drive 1
+WARNINGS OFF
+S" DSK1.SYSTEM" INCLUDED
+
+INCLUDE DSK1.CASE
+INCLUDE DSK1.TOWERSTATE
+INCLUDE DSK1.DISPLAY
+
+INIT
