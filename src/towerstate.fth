@@ -29,24 +29,12 @@ VARIABLE DESTINATION
 
 : MOVECOLOR ( n1 n2 -- )
   ( Validate )
-  2DUP
-  = IF
-    DROP DROP EXIT
-  THEN
-  DUP
-  1 < IF
-    DROP DROP EXIT
-  THEN
-  OVER
-  1 < IF
-    DROP DROP EXIT
-  THEN
-  DUP
-  3 > IF
-    DROP DROP EXIT
-  THEN
-  OVER
-  3 > IF
+  2DUP =
+  OVER 1 < OR
+  2 PICK 1 < OR
+  OVER 3 > OR
+  2 PICK 3 > OR
+  IF
     DROP DROP EXIT
   THEN
 
