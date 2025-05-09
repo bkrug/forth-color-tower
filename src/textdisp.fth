@@ -1,6 +1,4 @@
-/
-/ This word is most useful for testing in FORTH interactive terminal
-/
+( This word is most useful for testing in FORTH interactive terminal )
 : DISPLAYTOWERS ( -- )
   0 4 DO
     CR
