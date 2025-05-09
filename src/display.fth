@@ -46,7 +46,9 @@ DECIMAL
   TOWERLABELS$ SCREENIMAGEADDRESS 160 + SWAP VWRITE
 ;
 
-\ Use this to display the board when FORTH is in interactive mode
+\
+\ Display the board when FORTH is in interactive mode
+\
 : TESTDISPLAY ( -- )
   16 7 7 COLOR
   17 13 13 COLOR
