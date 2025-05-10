@@ -50,15 +50,15 @@ DECIMAL
 ;
 
 : INSTRUCTIONS$ ( -- addr len )
-  S" TYPE TWO TOWER NUMBERS TO MOVE A BLOCK TO AND FROM"
+  S" TYPE TWO TOWERS TO MOVE A COLOR"
 ;
 
 : FROM$ ( -- addr len )
-  S" FROM"
+  S" FROM  "
 ;
 
 : TO$ ( -- addr len )
-  S" TO"
+  S" TO    "
 ;
 
 : ERRORRANGE$ ( -- addr len )
@@ -74,14 +74,15 @@ DECIMAL
   0
   BEGIN
     DROP
+    ( flash cursor )
     VDPTIMER C@ CURSORFREQUENCY AND IF
       32 OVER VC!
     ELSE
       95 OVER VC!
     THEN
   KEY? DUP 48 > OVER 52 < AND UNTIL
-  ( display the requested character at "vdpAddr",
-    leaving a copy of the char at the top of the stack. )
+  ( display the requested character at "vdpAddr", )
+  ( leaving a copy of the char at the top of the stack. )
   DUP ROT VC!
   48 -
 ;
@@ -119,5 +120,15 @@ DECIMAL
 : TESTINPUT ( -- )
   TESTENTER
   ACCEPTINPUT
+  TESTLEAVE
+;
+
+: TESTLOOP ( -- )
+  TESTENTER
+  BEGIN
+    DISPLAYBOARD
+    ACCEPTINPUT
+    MOVECOLOR
+  5 4 = UNTIL
   TESTLEAVE
 ;
